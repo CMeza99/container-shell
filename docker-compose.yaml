@@ -1,0 +1,9 @@
+version: '3.3'
+services:
+  home:
+    hostname: home
+    build: .
+#    volumes:
+#      - type: bind
+#        source: ./home/digitalr00ts
+#        target: /home/digitalr00ts
