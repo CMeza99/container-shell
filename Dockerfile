@@ -2,10 +2,10 @@ FROM registry.fedoraproject.org/fedora:rawhide
 
 RUN cd && set -ex && \
   sed -i --expression 's/nodocs//' /etc/dnf/dnf.conf &&\
-  dnf update --assumeyes --quite coreutils-single curl &&\
-  dnf update --assumeyes --quiet --setopt='nodocs' &&\
-  dnf install --assumeyes --setopt='tsflags=nodocs' vim &&\
-  dnf install --assumeyes man bash-completion git openssh-client jq &&\
+  dnf update --assumeyes coreutils-single curl &&\
+  dnf update --assumeyes --setopt='nodocs' &&\
+  dnf install --assumeyes --nodocs vim unzip &&\
+  dnf install --assumeyes man bash-completion git openssh-clients jq &&\
   curl --tlsv1.2 --http2 -sL $( \
     curl --tlsv1.2 --http2 -sL https://releases.hashicorp.com/terraform/index.json \
       | jq -r '.versions[].builds[].url' \
@@ -21,7 +21,7 @@ RUN cd && set -ex && \
         | tail -1 \
         | sed -e 's/<a[^/]*>//' -e 's/<\/a>//') &&\
   dnf clean all && \
-  find /etc -name \*.rpmnew -delete
+  find /etc -name \*.rpmnew -delete &&\
   rm -rf -- /root/.cache
 
 CMD [ 'bash' ]
