@@ -1,5 +1,7 @@
 FROM registry.fedoraproject.org/fedora:rawhide
 
+ADD dotfiles/* /root/
+
 RUN cd && set -ex && \
   sed -i --expression 's/nodocs//' /etc/dnf/dnf.conf &&\
   dnf update --assumeyes coreutils-single curl &&\
@@ -21,7 +23,10 @@ RUN cd && set -ex && \
         | grep -oE "^<a .*>.*</a>" \
         | tail -1 \
         | sed -e 's/<a[^/]*>//' -e 's/<\/a>//') \
-        | tar -xvz &&\
+        | tar -xvzC /tmp &&\
+  mv -vf -- /tmp/docker/docker /usr/local/bin/ &&\
+  rm -rf -- /tmp/docker &&\
+  pip3 --no-cache-dir install docker-compose awscli &&\
   dnf clean all && \
   find /etc -name \*.rpmnew -delete &&\
   rm -rf -- /root/.cache
