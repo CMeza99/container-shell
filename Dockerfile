@@ -27,6 +27,8 @@ RUN cd && set -ex && \
   mv -vf -- /tmp/docker/docker /usr/local/bin/ &&\
   rm -rf -- /tmp/docker &&\
   pip3 --no-cache-dir install docker-compose awscli &&\
+  echo 'test -s "${HOME}/.ssh/github_com" || ssh-keygen -t ed25519 -o -a 100 -C home@container -N "" -f "${HOME}/.ssh/github_com"' \
+    >> ${HOME}/.bashrc &&\
   dnf clean all && \
   find /etc -name \*.rpmnew -delete &&\
   rm -rf -- /root/.cache
