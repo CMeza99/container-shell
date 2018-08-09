@@ -1,0 +1,22 @@
+[core]
+    editor = vim
+    askpass =
+    excludesfile = ~/.gitignore
+[user]
+    name = Carlos Meza
+    email = carlos@digitalr00ts.com
+[push]
+    default = simple
+[credential]
+    helper = cache --timeout=1653400
+[merge]
+    tool = vimdiff
+    conflictstyle = diff3
+[mergetool]
+    prompt = false
+[diff]
+    tool = vimdiff
+[difftool]
+    prompt = false
+[color]
+    ui = auto
