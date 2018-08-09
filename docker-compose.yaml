@@ -1,9 +1,16 @@
-version: '3.3'
+version: '3.6'
 services:
   home:
     hostname: home
     build: .
-#    volumes:
-#      - type: bind
-#        source: ./home/digitalr00ts
-#        target: /home/digitalr00ts
+    image: digitalr00ts/home
+    volumes:
+      - type: bind
+        source: ./SHARED
+        target: /root/SHARED
+      - type: volume
+        source: root_data
+        target: /root
+
+volumes:
+  root_data:
