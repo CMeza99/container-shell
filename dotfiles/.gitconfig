@@ -1,22 +1,26 @@
 [core]
-    editor = vim
-    askpass =
-    excludesfile = ~/.gitignore
+	editor = vim
+	askpass =
+	excludesfile = ~/.gitignore
 [user]
-    name = Carlos Meza
-    email = carlos@digitalr00ts.com
+	name = Carlos Meza
+	email = carlos@digitalr00ts.com
 [push]
-    default = simple
+	default = simple
 [credential]
-    helper = cache --timeout=1653400
+	helper = cache --timeout=1653400
 [merge]
-    tool = vimdiff
-    conflictstyle = diff3
+	tool = vimdiff
+	conflictstyle = diff3
 [mergetool]
-    prompt = false
+	prompt = false
 [diff]
-    tool = vimdiff
+	tool = vimdiff
 [difftool]
-    prompt = false
+	prompt = false
 [color]
-    ui = auto
+	ui = auto
+[commit]
+	gpgsign = true
+[gpg]
+	program = gpg2
