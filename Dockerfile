@@ -6,7 +6,7 @@ RUN cd && set -ex && \
   sed -i --expression 's/nodocs//' /etc/dnf/dnf.conf &&\
   dnf update --assumeyes coreutils-single curl &&\
   dnf update --assumeyes --nodocs  &&\
-  dnf install --assumeyes --nodocs vim unzip &&\
+  dnf install --assumeyes --nodocs neovim unzip &&\
   dnf install --assumeyes man bash-completion git openssh-clients jq findutils &&\
   curl --tlsv1.2 --http2 -sL $( \
     curl --tlsv1.2 --http2 -sL https://releases.hashicorp.com/terraform/index.json \
