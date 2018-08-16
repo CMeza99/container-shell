@@ -51,6 +51,7 @@ set background=dark
 " colorscheme nnkd
 
 " whitespace
+set list listchars=tab:▷⋅,trail:⋅,nbsp:⋅
 highlight ExtraWhitespace ctermbg=red guibg=red
 autocmd Syntax * syn match ExtraWhitespace /\s\+$/ containedin=ALL
 
@@ -198,14 +199,19 @@ let g:deoplete#enable_at_startup=1
 inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<C-i>"
 
 " NERDTree
+
+" NERDTree automatically when vim starts up if no files were specified
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
 " Open NERDTree in the directory of the current file (or /home if no file is open)
-function! NERDTreeToggleFind()
-  if (exists("t:NERDTreeBufName") && bufwinnr(t:NERDTreeBufName) != -1)
-    execute ":NERDTreeClose"
-  else
-    execute ":NERDTreeFind"
-  endif
-endfunction
+" function! NERDTreeToggleFind()
+"   if (exists("t:NERDTreeBufName") && bufwinnr(t:NERDTreeBufName) != -1)
+"     execute ":NERDTreeClose"
+"   else
+"     execute ":NERDTreeFind"
+"   endif
+" endfunction
 
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 nnoremap <leader>c :call NERDTreeToggleFind()<cr>
