@@ -15,7 +15,7 @@ jobs:
         - curl -fsSL https://download.docker.com/linux/ubuntu/gpg
           | sudo apt-key add -
         - sudo sh
-          -c '. /etc/lsb-release &&\
+          -c '. /etc/lsb-release &&
           echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu
           ${DISTRIB_CODENAME} stable"
           > /etc/apt/sources.list.d/docker.list'
@@ -34,10 +34,7 @@ jobs:
       env:
         -
       install: true
-      script:
-        -
-        # - .travis/deploy.sh
-        #   $encrypted_1fc90f464345_key $encrypted_1fc90f464345_iv
+      script: true
       before_deploy:
         - mkdir -p ~\/.ssh
         - openssl aes-256-cbc -K $encrypted_1fc90f464345_key
