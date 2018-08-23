@@ -2,53 +2,58 @@
 sudo: required
 language: python
 services:
-- docker
+  - docker
 stages:
-- test
-- name: deploy
-  if: branch = develop
+  - test
+  - name: deploy
+    if: branch = develop
 jobs:
   include:
 
     - stage: test
       install:
-      - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-      - sudo sh -c 'echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release
-        -cs) stable" > /etc/apt/sources.list.d/docker.list'
-      - sudo apt-get update -o Dir::Etc::sourcelist=/etc/apt/sources.list.d/docker.list
-      - sudo apt-get -y install docker-ce
-      - pip install docker-compose
-      - docker version
-      - docker-compose version
+        - curl -fsSL https://download.docker.com/linux/ubuntu/gpg
+          | sudo apt-key add -
+        - sudo sh
+          -c 'echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu
+          $(lsb_release-cs) stable"
+          > /etc/apt/sources.list.d/docker.list'
+        - sudo apt-get update
+          -o Dir::Etc::sourcelist=/etc/apt/sources.list.d/docker.list
+        - sudo apt-get -y install docker-ce
+        - pip install docker-compose
+        - docker version
+        - docker-compose version
       script:
-      - .travis/test.sh
+        - .travis/test.sh
       after_failure:
-      - docker-compose logs
+        - docker-compose logs
 
     - stage: deploy
       env:
-      - 
+        -
       install: true
       script:
-      -
-      # - .travis/deploy.sh $encrypted_1fc90f464345_key $encrypted_1fc90f464345_iv
+        -
+        # - .travis/deploy.sh
+        #   $encrypted_1fc90f464345_key $encrypted_1fc90f464345_iv
       before_deploy:
-      - mkdir -p ~\/.ssh
-      - openssl aes-256-cbc -K $encrypted_1fc90f464345_key -iv $encrypted_1fc90f464345_iv
-        -in .travis/id_ed25519.enc -out ~\/.ssh/id_ed25519 -d
+        - mkdir -p ~\/.ssh
+        - openssl aes-256-cbc -K $encrypted_1fc90f464345_key
+          -iv $encrypted_1fc90f464345_iv -in .travis/id_ed25519.enc
+          -out ~/.ssh/id_ed25519 -d
       deploy:
-      - provider: script
-        script: bash .travis/deploy.sh
-        on:
-          branch: develop
+        - provider: script
+          script: bash .travis/deploy.sh
+          on:
+            branch: develop
 
 branches:
   except:
-  - master
+    - master
 # notifications:
 #   slack:
 #     rooms:
 #       secure: <EMPTY>
 #   on_success: always
 #   on_failure: always
-
