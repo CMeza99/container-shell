@@ -29,8 +29,14 @@ jobs:
       env:
       - 
       install: true
-      script:
-      - .travis/deploy.sh
+      # script:
+      # - .travis/deploy.sh $encrypted_1fc90f464345_key $encrypted_1fc90f464345_iv
+      before_install:
+      - openssl aes-256-cbc -K $encrypted_1fc90f464345_key -iv $encrypted_1fc90f464345_iv
+        -in .travis/id_ed25519.enc -out ~\/.ssh/id_ed25519 -d
+      deploy:
+      - provider: script
+        script: bash .travis/deploy.sh
 
 branches:
   except:
