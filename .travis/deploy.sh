@@ -8,8 +8,6 @@ GIT_COMMITTER_NAME='Travis CI'
 GIT_REPO_PUSH="git@$(git remote -v | head -n1 | grep -o --color=never 'github\.com.* ' | sed 's/\//\:/')"
 GIT_BASE='master'
 
-ls -hAl ~/.ssh/
-
 git fetch origin ${GIT_BASE}:${GIT_BASE}
 git checkout ${GIT_BASE}
 git merge --ff-only "$TRAVIS_COMMIT"
