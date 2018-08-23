@@ -28,7 +28,7 @@ RUN cd && set -ex && \
   mv -vf -- /tmp/docker/docker /usr/local/bin/ &&\
   rm -rf -- /tmp/docker &&\
   pip3 --no-cache-dir install docker-compose awscli &&\
-  gem install --no-document --verbose travis &&\
+  gem install --no-document travis &&\
   echo 'test -s "${HOME}/.ssh/github_ed25519" || ssh-keygen -t ed25519 -o -a 100 -C home@container -N "" -f "${HOME}/.ssh/github_ed25519"' \
     >> ${HOME}/.bashrc &&\
   dnf --assumeyes remove redhat-rpm-config make gcc libffi-devel ruby-devel &&\
