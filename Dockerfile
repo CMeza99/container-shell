@@ -6,7 +6,7 @@ RUN cd && set -ex && \
   sed -i --expression 's/nodocs//' /etc/dnf/dnf.conf &&\
   dnf update --assumeyes coreutils-single curl &&\
   dnf update --assumeyes --nodocs  &&\
-  dnf install --assumeyes --nodocs redhat-rpm-config gcc libffi-devel ruby-dev &&\
+  dnf install --assumeyes --nodocs redhat-rpm-config gcc libffi-devel ruby-devel &&\
   dnf install --assumeyes --nodocs neovim unzip ruby &&\
   dnf install --assumeyes man bash-completion git openssh-clients jq findutils tmux &&\
   curl --tlsv1.2 --http2 -sL $( \
