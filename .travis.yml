@@ -37,7 +37,7 @@ jobs:
       script: true
       before_deploy:
         - mkdir -p ~/.ssh &&
-          chmod 700 ~/.ssh &&
+          chmod 700 ~/.ssh
         - openssl aes-256-cbc -K $encrypted_1fc90f464345_key
           -iv $encrypted_1fc90f464345_iv -in .travis/id_ed25519.enc
           -out ~/.ssh/id_ed25519 -d
