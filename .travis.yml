@@ -17,9 +17,7 @@ jobs:
         -cs) stable" > /etc/apt/sources.list.d/docker.list'
       - sudo apt-get update -o Dir::Etc::sourcelist=/etc/apt/sources.list.d/docker.list
       - sudo apt-get -y install docker-ce
-      - sudo curl -fsSL https://github.com/docker/compose/releases/download/1.16.1/docker-compose-`uname
-        -s`-`uname -m` -o /usr/local/bin/docker-compose
-      - sudo chmod +x /usr/local/bin/docker-compose
+      - pip install docker-compose
       - docker version
       - docker-compose version
       script:
