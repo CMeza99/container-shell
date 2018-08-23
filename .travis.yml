@@ -21,7 +21,7 @@ install:
 script:
 - .travis/test.sh
 after_failure:
-- docker-compose -f .travis/compose-${distro}.yaml logs
+- docker-compose logs
 
 jobs:
   include:
@@ -29,9 +29,10 @@ jobs:
       env:
       - 
       install: true
-      # script:
+      script:
+      -
       # - .travis/deploy.sh $encrypted_1fc90f464345_key $encrypted_1fc90f464345_iv
-      before_install:
+      before_deploy:
       - mkdir -p ~\/.ssh
       - openssl aes-256-cbc -K $encrypted_1fc90f464345_key -iv $encrypted_1fc90f464345_iv
         -in .travis/id_ed25519.enc -out ~\/.ssh/id_ed25519 -d
