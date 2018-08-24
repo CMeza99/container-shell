@@ -7,7 +7,7 @@ RUN cd && set -ex && \
   dnf --assumeyes update coreutils-single curl &&\
   dnf --assumeyes update --nodocs  &&\
   dnf --assumeyes install --nodocs neovim unzip ruby &&\
-  dnf --assumeyes install man bash-completion git openssh-clients jq findutils tmux &&\
+  dnf --assumeyes install man bash-completion git openssh-clients jq findutils tmux iputils ldns-utils bind-utils &&\
   dnf --assumeyes install --nodocs redhat-rpm-config make gcc libffi-devel ruby-devel &&\
   curl --tlsv1.2 --http2 -sL $( \
     curl --tlsv1.2 --http2 -sL https://releases.hashicorp.com/terraform/index.json \
