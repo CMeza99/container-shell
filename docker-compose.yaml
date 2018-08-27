@@ -2,9 +2,9 @@
 version: '3.6'
 services:
   home:
-    hostname: home
+    hostname: shell
     build: .
-    image: digitalr00ts/home
+    image: cmeza99/container-shell
     volumes:
       - type: bind
         source: ./SHARED
