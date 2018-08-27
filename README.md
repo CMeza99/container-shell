@@ -2,3 +2,10 @@
 
 # container-shell
 My CLI enviroment.
+
+## Usage
+
+```sh
+# update
+docker-compose pull container-shell
+```
