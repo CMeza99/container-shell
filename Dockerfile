@@ -7,8 +7,8 @@ RUN cd && set -ex && \
   dnf --assumeyes update coreutils-single curl &&\
   dnf --assumeyes update --nodocs  &&\
   dnf --assumeyes install --nodocs neovim unzip ruby &&\
-  dnf --assumeyes install man bash-completion git openssh-clients jq findutils tmux iputils ldns-utils bind-utils nmap &&\
-  dnf --assumeyes install --nodocs redhat-rpm-config make gcc libffi-devel ruby-devel &&\
+  dnf --assumeyes install man bash-completion git openssh-clients jq findutils tmux iputils ldns-utils bind-utils nmap which file &&\
+  dnf --assumeyes install --nodocs make gcc libffi-devel redhat-rpm-config ruby-devel &&\
   curl --tlsv1.2 --http2 -sL $( \
     curl --tlsv1.2 --http2 -sL https://releases.hashicorp.com/terraform/index.json \
       | jq -r '.versions[].builds[].url' \
@@ -31,7 +31,7 @@ RUN cd && set -ex && \
   gem install --no-document travis &&\
   echo 'test -s "${HOME}/.ssh/github_ed25519" || ssh-keygen -t ed25519 -o -a 100 -C home@container -N "" -f "${HOME}/.ssh/github_ed25519"' \
     >> ${HOME}/.bashrc &&\
-  dnf --assumeyes remove redhat-rpm-config make gcc libffi-devel ruby-devel &&\
+  dnf --assumeyes remove redhat-rpm-config ruby-devel &&\
   dnf --assumeyes autoremove &&\
   dnf --assumeyes clean all &&\
   find /etc -name \*.rpmnew -delete &&\
