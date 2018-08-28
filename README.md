@@ -8,4 +8,7 @@ My CLI enviroment.
 ```sh
 # update
 docker-compose pull container-shell
+
+# temporary environment
+docker-compose run --rm home bash
 ```
