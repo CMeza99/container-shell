@@ -6,4 +6,4 @@ set -ex
 docker-compose build --no-cache
 
 #TEST
-docker-compose run home cat /etc/redhat-release | grep -C 5 -iF Fedora
+docker-compose run --rm shell cat /etc/redhat-release | grep -C 5 -iF Fedora

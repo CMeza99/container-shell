@@ -10,5 +10,5 @@ My CLI enviroment.
 docker-compose pull container-shell
 
 # temporary environment
-docker-compose run --rm home bash
+docker-compose run --rm shell bash
 ```
