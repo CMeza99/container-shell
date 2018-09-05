@@ -9,6 +9,8 @@
 	default = simple
 [credential]
 	helper = cache --timeout=1653400
+[branch]
+  autosetuprebase = always
 [merge]
 	tool = vimdiff
 	conflictstyle = diff3
