@@ -9,6 +9,7 @@ RUN cd && set -ex && \
   dnf --assumeyes install --nodocs neovim unzip ruby &&\
   dnf --assumeyes install man bash-completion git openssh-clients jq findutils tmux iputils ldns-utils bind-utils nmap which file lastpass-cli &&\
   dnf --assumeyes install --nodocs make gcc libffi-devel redhat-rpm-config ruby-devel &&\
+  ln -s /usr/bin/sha1sum /usr/bin/shasum &&\
   curl --tlsv1.2 --http2 -SsL \
     https://download.docker.com/linux/static/stable/x86_64/$( \
       curl --tlsv1.2 --http2 -SsL https://download.docker.com/linux/static/stable/x86_64/ \
