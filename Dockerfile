@@ -9,15 +9,6 @@ RUN cd && set -ex && \
   dnf --assumeyes install --nodocs neovim unzip ruby &&\
   dnf --assumeyes install man bash-completion git openssh-clients jq findutils tmux iputils ldns-utils bind-utils nmap which file lastpass-cli &&\
   dnf --assumeyes install --nodocs make gcc libffi-devel redhat-rpm-config ruby-devel &&\
-  curl --tlsv1.2 --http2 -sL $( \
-    curl --tlsv1.2 --http2 -sL https://releases.hashicorp.com/terraform/index.json \
-      | jq -r '.versions[].builds[].url' \
-      | sort -t. -k 1,1n -k 2,2n -k 3,3n -k 4,4n \
-      | egrep 'linux.*amd64' \
-      | tail -1) \
-      > /tmp/terraform.zip &&\
-  unzip -d /usr/local/bin/ /tmp/terraform.zip &&\
-  rm -f -- /tmp/terraform.zip &&\
   curl --tlsv1.2 --http2 -SsL \
     https://download.docker.com/linux/static/stable/x86_64/$( \
       curl --tlsv1.2 --http2 -SsL https://download.docker.com/linux/static/stable/x86_64/ \
