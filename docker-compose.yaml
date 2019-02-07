@@ -4,14 +4,14 @@ services:
   shell:
     hostname: shell
     build: .
-    image: cmeza99/container-shell
+    image: cmeza99/container-shell:develop
     volumes:
       - type: bind
         source: ./SHARED
-        target: /root/SHARED
+        target: /shared
       - type: volume
-        source: root_data
-        target: /root
+        source: home_data
+        target: /home
 
 volumes:
-  root_data:
+  home_data:
